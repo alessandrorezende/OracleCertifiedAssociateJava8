@@ -1,2 +1,2 @@
 # OracleCertifiedAssociateJava8
-Exercise Oracle Certified Associate Java 8
+Oracle Certified Associate Java SE 8 Programmer I
