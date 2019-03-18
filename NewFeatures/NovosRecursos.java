@@ -3,6 +3,10 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.Comparator;
 
+/*
++ Default Methods
++ Usando lambdas
+*/
 public class NovosRecursos {
 
   public static void main(String... args) throws Exception{
