@@ -2,7 +2,8 @@
 Quantos métodos uma interface funcional pode ter?
 1 único método abstrato. Além desse método ela pode ter outros métodos, contanto que sejam default ou 'static'.
 
-Essa estrutura é fundamental, pois assim o compilador sabe exatamente que o corpo da expressão lambda que escrevemos é a implementação de seu único método abstrato.
+Essa estrutura é fundamental, pois assim o compilador sabe exatamente que o corpo da expressão
+lambda que escrevemos é a implementação de seu único método abstrato.
 ----------------------------------------------------------------
 Por que o seguinte código não funciona?
 Object o = s -> System.out.println(s);
@@ -14,3 +15,9 @@ Lembre-se que para trabalhar com lambda, uma interface funcional precisa estar e
 O erro de compilação é bem intuitivo:
 The target type of this expression must be a functional interface
 ----------------------------------------------------------------
+Analise do código abaixo:
+palavras.forEach(System.out::println);
+
+O método forEach é um 'default method' da classe Iterator
+O método System.out::println é um 'method reference' que
+se transforma em lambda que será atribuido a uma interface funcional
