@@ -9,7 +9,7 @@ public class Work {
         }
     }).start();
 
-    //Como podemos escrevê-lo usando a uma expressão lambda?
+    //Como podemos escrevê-lo usando uma expressão lambda?
     new Thread(() -> System.out.println("Executando um Runnable com lambda")).start();
   }
 
