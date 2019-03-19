@@ -33,10 +33,12 @@ public class MethodReferences {
     */
 
     System.out.println(palavras);
-    
+
     //usando method reference
     //o method reference eh avalidado como uma função lambda
     palavras.forEach(System.out::println);
+
+
 
 
   }
