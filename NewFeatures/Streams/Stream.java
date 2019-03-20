@@ -1,4 +1,6 @@
 import java.util.*;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 public class Stream {
   //Streams: trabalhando melhor com coleções
@@ -31,16 +33,57 @@ public class Stream {
 
       //Usando Streams
       cursos.stream()
-        .filter(c -> c.getNrAlunos() >= 100)
-        .map(Curso::getNrAlunos)
-        .forEach(System.out::println);
+          .filter(c -> c.getNrAlunos() >= 100)
+          .map(Curso::getNrAlunos)
+          .forEach(System.out::println);
 
-        //Usando Stream para obter a soma do numero de alunos dos cursos com mais de 100 alunos
+      //Usando Stream para obter a soma do numero de alunos dos cursos com mais de 100 alunos
       int soma = cursos.stream()
           .filter(c -> c.getNrAlunos() >= 100)
           .mapToInt(Curso::getNrAlunos)
           .sum();
       System.out.println(soma);
+
+      //Usando Stream para obter a media do numero de alunos dos cursos com mais de 100 alunos
+      OptionalDouble media = cursos.stream()
+          .filter(c -> c.getNrAlunos() >= 100)
+          .mapToInt(Curso::getNrAlunos)
+          .average();
+      System.out.println(media);
+
+      //pegando um elemento filtrado
+      Optional<Curso> curso = cursos.stream()
+        .filter(c -> c.getNrAlunos() >= 100)
+        .findAny();
+
+      //se existe um curso com mais de 100 alunos imprime ele
+      cursos.stream()
+        .filter(c -> c.getNrAlunos() >= 100)
+        .findAny()
+        .ifPresent(c -> System.out.println(c.getNome()));
+
+      //passando o stream filtrado para uma lista
+      List<Curso> resultado = cursos.stream()
+        .filter(c -> c.getNrAlunos() >= 100)
+        .collect(toList());
+
+      //passando o stream filtrado para um map
+      Map<String, Integer> resultadoMap = cursos.stream()
+        .filter(c -> c.getNrAlunos() >= 100)
+        .collect(toMap(c -> c.getNome(), c -> c.getNrAlunos()));
+
+      //passando o stream para uma map e formatando a impressão
+      cursos.stream()
+          .filter(c -> c.getNrAlunos() >= 100)
+          .collect(toMap(c -> c.getNome(), c -> c.getNrAlunos()))
+          .forEach((nome,nrAlunos) -> System.out.println(nome + " tem " + nrAlunos + " alunos"));
+
+      //usando parallelStream. Deve ser usado apenas quando é algo grande a ser processado
+      //porque se não o overhead (tempo computacional maior) não compensa
+      cursos.parallelStream()
+          .filter(c -> c.getNrAlunos() >= 100)
+          .collect(toMap(c -> c.getNome(), c -> c.getNrAlunos()))
+          .forEach((nome,nrAlunos) -> System.out.println(nome + " tem " + nrAlunos + " alunos"));
 
   }
 
